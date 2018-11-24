@@ -1,0 +1,247 @@
+<?xml version="1.0"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           targetNamespace="https://www.w3schools.com"
+           xmlns="https://www.w3schools.com"
+           elementFormDefault="qualified">
+    
+    <xs:element name="hajozas">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="konvojok" type="konvojok_type"/>
+                <xs:element name="szovegysegek" type="szovegysegek_type"/>
+                <xs:element name="orszagok" type="orszagok_type"/>
+                <xs:element name="uboatok" type="uboatok_type"/>
+                <xs:element name="parancsnokok" type="parancsnokok_type"/>
+                <xs:element name="parancsnoklasok" type="parancsnoklasok_type"/>
+            </xs:sequence>
+        </xs:complexType>
+
+        <xs:key name="konvojIDKey">
+            <xs:selector xpath="konvojok/konvoj"/>
+            <xs:field xpath="@kid"/>
+        </xs:key>
+
+        <xs:key name="khajoIDKey">
+            <xs:selector xpath="konvojok/konvoj/khajok/khajo"/>
+            <xs:field xpath="@hid"/>
+        </xs:key>
+
+        <xs:key name="szovegysegIDKey">
+            <xs:selector xpath="szovegysegek/szovegyseg"/>
+            <xs:field xpath="@szid"/>
+        </xs:key>
+
+        <xs:key name="orszagIDKey">
+            <xs:selector xpath="orszagok/orszag"/>
+            <xs:field xpath="@oid"/>
+        </xs:key>
+
+        <xs:key name="uboatIDKey">
+            <xs:selector xpath="uboatok/uboat"/>
+            <xs:field xpath="@uid"/>
+        </xs:key>
+
+        <xs:key name="parancsnokIDKey">
+            <xs:selector xpath="parancsnokok/parancsnok"/>
+            <xs:field xpath="@pid"/>
+        </xs:key>
+
+        <xs:keyref name="khajoToOrszag" refer="orszagIDKey">
+            <xs:selector xpath="konvojok/konvoj/khajok/khajo"/>
+            <xs:field xpath="@oid"/>
+        </xs:keyref>
+        
+        <xs:keyref name="khajoToUboat" refer="uboatIDKey">
+            <xs:selector xpath="konvojok/konvoj/khajok/khajo"/>
+            <xs:field xpath="@uid"/>
+        </xs:keyref>
+
+        <xs:keyref name="szovegysegToOrszag" refer="orszagIDKey">
+            <xs:selector xpath="szovegysegek/szovegyseg"/>
+            <xs:field xpath="@oid"/>
+        </xs:keyref>
+
+        <xs:keyref name="uboatToSzovegyseg" refer="szovegysegIDKey">
+            <xs:selector xpath="uboatok/uboat"/>
+            <xs:field xpath="@szid"/>
+        </xs:keyref>
+
+        <xs:keyref name="parancsnoklasToParancsnok" refer="parancsnokIDKey">
+            <xs:selector xpath="parancsnoklasok/parancsnoklas"/>
+            <xs:field xpath="@pid"/>
+        </xs:keyref>
+
+        <xs:keyref name="parancsnoklasToUboat" refer="uboatIDKey">
+            <xs:selector xpath="parancsnoklasok/parancsnoklas"/>
+            <xs:field xpath="@uid"/>
+        </xs:keyref>
+
+    </xs:element>
+
+    <xs:complexType name="emptyType">
+        <xs:sequence/>
+    </xs:complexType>
+
+    <xs:complexType name="konvojok_type">
+        <xs:sequence>
+            <xs:element name="konvoj" type="konvoj_type" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="szovegysegek_type">
+        <xs:sequence>
+            <xs:element name="szovegyseg" type="szovegyseg_type" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="orszagok_type">
+        <xs:sequence>
+            <xs:element name="orszag" type="orszag_type" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="uboatok_type">
+        <xs:sequence>
+            <xs:element name="uboat" type="uboat_type" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="parancsnokok_type">
+        <xs:sequence>
+            <xs:element name="parancsnok" type="parancsnok_type" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="parancsnoklasok_type">
+        <xs:sequence>
+            <xs:element name="parancsnoklas" type="parancsnoklas_type" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="konvoj_type">
+        <xs:sequence>
+            <xs:element name="knev" type="xs:string"/>
+            <xs:element name="kindulas" type="xs:date"/>
+            <xs:element name="kerkezes" type="xs:date"/>
+            <xs:element name="kstart" type="xs:string"/>
+            <xs:element name="kcel" type="xs:string"/>
+            <xs:element name="meret" type="meret_type"/>
+            <xs:element name="kiseret">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:enumeration value="gyenge"/>
+                        <xs:enumeration value="kozepes"/>
+                        <xs:enumeration value="eros"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element name="khajok">
+               <xs:complexType>
+                   <xs:sequence>
+                       <xs:element name="khajo" type="khajo_type" maxOccurs="unbounded"/>
+                   </xs:sequence>
+               </xs:complexType>
+            </xs:element>
+        </xs:sequence>
+        <xs:attribute name="kid" type="xs:positiveInteger" use="required"/>
+    </xs:complexType>
+
+    <xs:complexType name="meret_type">
+        <xs:sequence>
+            <xs:element name="kerhajo" type="xs:positiveInteger"/>
+            <xs:element name="hadihajo" type="xs:positiveInteger"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="hajo_type">
+        <xs:sequence>
+            <xs:element name="hnev" type="xs:string"/>
+            <xs:element name="htipus" type="xs:string"/>
+        </xs:sequence>
+        <xs:attribute name="oid" type="xs:positiveInteger" use="required"/>
+    </xs:complexType>
+
+    <xs:complexType name="khajo_type">
+        <xs:complexContent>
+            <xs:extension base="hajo_type">
+                <xs:sequence>
+                    <xs:element name="meghajt">
+                        <xs:simpleType>
+                            <xs:restriction base="xs:string">
+                                <xs:enumeration value="goz"/>
+                                <xs:enumeration value="motor"/>
+                            </xs:restriction>
+                        </xs:simpleType>
+                    </xs:element>
+                    <xs:element name="tonna" type="xs:positiveInteger"/>
+                    <xs:element name="elsullyedt" type="xs:date"/>
+                    <xs:element name="szallitmany" type="xs:string"/>
+                </xs:sequence>
+                <xs:attribute name="hid" type="xs:positiveInteger" use="required"/>
+                <xs:attribute name="uid" type="xs:positiveInteger" use="required"/>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="szovegyseg_type">
+        <xs:complexContent>
+            <xs:extension base="hajo_type">
+                <xs:attribute name="szid" type="xs:positiveInteger" use="required"/>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="orszag_type">
+        <xs:sequence>
+            <xs:element name="onev" type="xs:string"/>
+        </xs:sequence>
+        <xs:attribute name="oid" type="xs:positiveInteger" use="required"/>
+    </xs:complexType>
+
+    <xs:complexType name="uboat_type">
+        <xs:sequence>
+            <xs:element name="unev" type="xs:string"/>
+            <xs:element name="utipus">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:enumeration value="II"/>
+                        <xs:enumeration value="VII"/>
+                        <xs:enumeration value="IX"/>
+                        <xs:enumeration value="XI"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element name="elveszett" type="xs:date"/>
+            <xs:element name="veszteseg_oka" type="xs:string"/>
+        </xs:sequence>
+        <xs:attribute name="uid" type="xs:positiveInteger" use="required"/>
+        <xs:attribute name="szid" type="xs:positiveInteger"/>
+    </xs:complexType>
+    
+    <xs:complexType name="parancsnok_type">
+        <xs:sequence>
+            <xs:element name="nev" type="xs:string"/>
+            <xs:element name="szuletes" type="xs:date"/>
+            <xs:element name="orjaratok" type="xs:positiveInteger"/>
+            <xs:element name="kituntetesek" type="xs:positiveInteger"/>
+            <xs:element name="tapasztalat">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:enumeration value="ujonc"/>
+                        <xs:enumeration value="harcedzett"/>
+                        <xs:enumeration value="veteran"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+        </xs:sequence>
+        <xs:attribute name="pid" type="xs:positiveInteger" use="required"/>
+    </xs:complexType>
+    
+    <xs:complexType name="parancsnoklas_type">
+        <xs:attribute name="pid" type="xs:positiveInteger" use="required"/>
+        <xs:attribute name="uid" type="xs:positiveInteger" use="required"/>
+        <xs:attribute name="mettol" type="xs:date" use="required"/>
+        <xs:attribute name="meddig" type="xs:date" use="required"/>
+    </xs:complexType>
+    
+</xs:schema>

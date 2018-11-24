@@ -1,0 +1,114 @@
+<?xml version="1.0"?>
+
+<hajozas xmlns="https://www.w3schools.com"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="https://www.w3schools.com hajozas.xsd">
+
+    <konvojok>
+        <konvoj kid="1">
+            <knev>HX-72</knev>
+            <kindulas>1940-09-09</kindulas>
+            <kerkezes>1940-09-22</kerkezes>
+            <kstart>Halifax</kstart>
+            <kcel>Feloszlatva</kcel>
+            <meret>
+                <kerhajo>41</kerhajo>
+                <hadihajo>12</hadihajo>
+            </meret>
+            <kiseret>kozepes</kiseret>
+            <khajok>
+                <khajo oid="1" hid="1" uid="1">
+                    <hnev>Blairangus</hnev>
+                    <htipus>Teherszállító</htipus>
+                    <meghajt>goz</meghajt>
+                    <tonna>4409</tonna>
+                    <elsullyedt>1940-09-21</elsullyedt>
+                    <szallitmany>faanyag</szallitmany>
+                </khajo>
+                <khajo oid="1" hid="2" uid="2">
+                    <hnev>Elmbank</hnev>
+                    <htipus>Teherszállító</htipus>
+                    <meghajt>motor</meghajt>
+                    <tonna>5156</tonna>
+                    <elsullyedt>1940-09-21</elsullyedt>
+                    <szallitmany>vegyes</szallitmany>
+                </khajo>
+            </khajok>
+        </konvoj>
+        <konvoj kid="2">
+            <knev>OB-191</knev>
+            <kindulas>1940-07-30</kindulas>
+            <kerkezes>1940-08-02</kerkezes>
+            <kstart>Liverpool</kstart>
+            <kcel>Feloszlatva</kcel>
+            <meret>
+                <kerhajo>28</kerhajo>
+                <hadihajo>3</hadihajo>
+            </meret>
+            <kiseret>gyenge</kiseret>
+            <khajok>
+                <khajo oid="1" hid="3" uid="2">
+                    <hnev>Jersey City</hnev>
+                    <htipus>Teherszállító</htipus>
+                    <meghajt>goz</meghajt>
+                    <tonna>6322</tonna>
+                    <elsullyedt>1940-07-31</elsullyedt>
+                    <szallitmany>üres</szallitmany>
+                </khajo>
+            </khajok>
+        </konvoj>
+    </konvojok>
+    <szovegysegek>
+        <szovegyseg oid="1" szid="1">
+            <hnev>Walker</hnev>
+            <htipus>Romboló</htipus>
+        </szovegyseg>
+        <szovegyseg oid="1" szid="2">
+            <hnev>Typhoon</hnev>
+            <htipus>Repülőgép</htipus>
+        </szovegyseg>
+    </szovegysegek>
+    <orszagok>
+        <orszag oid="1">
+            <onev>Nagy-Britannia</onev>
+        </orszag>
+        <orszag oid="2">
+            <onev>Norvégia</onev>
+        </orszag>
+    </orszagok>
+    <uboatok>
+        <uboat uid="1">
+            <unev>U-48</unev>
+            <utipus>VII</utipus>
+            <elveszett>1945-05-03</elveszett>
+            <veszteseg_oka>Meglékelve</veszteseg_oka>
+        </uboat>
+        <uboat uid="2" szid="1">
+            <unev>U-99</unev>
+            <utipus>VII</utipus>
+            <elveszett>1941-03-17</elveszett>
+            <veszteseg_oka>mélyvízi bombák</veszteseg_oka>
+        </uboat>
+    </uboatok>
+    <parancsnokok>
+        <parancsnok pid="1">
+            <nev>Heinrich Bleichrodt</nev>
+            <szuletes>1909-10-21</szuletes>
+            <orjaratok>8</orjaratok>
+            <kituntetesek>8</kituntetesek>
+            <tapasztalat>veteran</tapasztalat>
+        </parancsnok>
+        <parancsnok pid="2">
+            <nev>Otto Kretschmer</nev>
+            <szuletes>1912-05-01</szuletes>
+            <orjaratok>16</orjaratok>
+            <kituntetesek>6</kituntetesek>
+            <tapasztalat>veteran</tapasztalat>
+        </parancsnok>
+    </parancsnokok>
+    <parancsnoklasok>
+        <parancsnoklas pid="1" uid="1" mettol="1940-09-04" meddig="1940-12-16"/>
+        <parancsnoklas pid="2" uid="2" mettol="1940-04-18" meddig="1941-03-17"/>
+    </parancsnoklasok>
+    
+</hajozas>
