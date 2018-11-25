@@ -71,4 +71,16 @@ public class Uboat {
     public void setVesztesegOka(String vesztesegOka) {
         this.vesztesegOka = vesztesegOka;
     }
+
+    @Override
+    public String toString() {
+        return "Uboat{" +
+                "uid=" + uid +
+                ", szid=" + szid +
+                ", unev='" + unev + '\'' +
+                ", utipus=" + utipus +
+                ", elveszett=" + elveszett +
+                ", vesztesegOka='" + vesztesegOka + '\'' +
+                '}';
+    }
 }

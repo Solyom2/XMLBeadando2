@@ -16,4 +16,5 @@ public class Szovegyseg extends Hajo{
     public void setSzid(int szid) {
         this.szid = szid;
     }
+
 }

@@ -10,20 +10,23 @@ public class Main {
 
         Scanner scanner = new Scanner(System.in);
         boolean exit = false;
-        XMLManager xmlManager = new XMLManager();
+
+        XMLManager.listUboats();
 
         do {
             System.out.println("0. Kilépés");
             System.out.println("1. Konvojok listázása");
             System.out.println("2. Kereskedelmi hajók listázása");
-            System.out.println("3. Szövetséges hadihajók listázása");
             System.out.println("4. U-boatok listázása");
-            System.out.println("5. Parancsnokok listázása");
-            System.out.println("6. Országok listázása");
+            System.out.println("5. Szövetséges gység hozzáadása");
             System.out.println("Kérem válasszon egy menüpontot: ");
 
             switch (scanner.nextInt()) {
                 case 0: exit = true;
+                        break;
+                case 4: XMLManager.listUboats();
+                        break;
+                case 5: XMLManager.addSzovegyseg();
                         break;
                 default: System.out.println("Nincs ilyen menüpont");
             }

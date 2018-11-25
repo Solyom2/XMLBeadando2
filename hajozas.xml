@@ -1,8 +1,4 @@
-<?xml version="1.0"?>
-
-<hajozas xmlns="https://www.w3schools.com"
-         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="https://www.w3schools.com hajozas.xsd">
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><hajozas xmlns="https://www.w3schools.com" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="https://www.w3schools.com hajozas.xsd">
 
     <konvojok>
         <konvoj kid="1">
@@ -17,7 +13,7 @@
             </meret>
             <kiseret>kozepes</kiseret>
             <khajok>
-                <khajo oid="1" hid="1" uid="1">
+                <khajo hid="1" oid="1" uid="1">
                     <hnev>Blairangus</hnev>
                     <htipus>Teherszállító</htipus>
                     <meghajt>goz</meghajt>
@@ -25,7 +21,7 @@
                     <elsullyedt>1940-09-21</elsullyedt>
                     <szallitmany>faanyag</szallitmany>
                 </khajo>
-                <khajo oid="1" hid="2" uid="2">
+                <khajo hid="2" oid="1" uid="2">
                     <hnev>Elmbank</hnev>
                     <htipus>Teherszállító</htipus>
                     <meghajt>motor</meghajt>
@@ -47,7 +43,7 @@
             </meret>
             <kiseret>gyenge</kiseret>
             <khajok>
-                <khajo oid="1" hid="3" uid="2">
+                <khajo hid="3" oid="1" uid="2">
                     <hnev>Jersey City</hnev>
                     <htipus>Teherszállító</htipus>
                     <meghajt>goz</meghajt>
@@ -83,7 +79,7 @@
             <elveszett>1945-05-03</elveszett>
             <veszteseg_oka>Meglékelve</veszteseg_oka>
         </uboat>
-        <uboat uid="2" szid="1">
+        <uboat szid="1" uid="2">
             <unev>U-99</unev>
             <utipus>VII</utipus>
             <elveszett>1941-03-17</elveszett>
@@ -107,8 +103,8 @@
         </parancsnok>
     </parancsnokok>
     <parancsnoklasok>
-        <parancsnoklas pid="1" uid="1" mettol="1940-09-04" meddig="1940-12-16"/>
-        <parancsnoklas pid="2" uid="2" mettol="1940-04-18" meddig="1941-03-17"/>
+        <parancsnoklas meddig="1940-12-16" mettol="1940-09-04" pid="1" uid="1"/>
+        <parancsnoklas meddig="1941-03-17" mettol="1940-04-18" pid="2" uid="2"/>
     </parancsnoklasok>
     
 </hajozas>
