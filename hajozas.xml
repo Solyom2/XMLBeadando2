@@ -71,7 +71,7 @@
         <orszag oid="2">
             <onev>Norvégia</onev>
         </orszag>
-    </orszagok>
+   </orszagok>
     <uboatok>
         <uboat uid="1">
             <unev>U-48</unev>
@@ -100,6 +100,13 @@
             <orjaratok>16</orjaratok>
             <kituntetesek>6</kituntetesek>
             <tapasztalat>veteran</tapasztalat>
+        </parancsnok>
+        <parancsnok pid="3">
+            <nev>Fritz Frauenheim</nev>
+            <szuletes>1912-03-09</szuletes>
+            <orjaratok>9</orjaratok>
+            <kituntetesek>4</kituntetesek>
+            <tapasztalat>harcedzett</tapasztalat>
         </parancsnok>
     </parancsnokok>
     <parancsnoklasok>

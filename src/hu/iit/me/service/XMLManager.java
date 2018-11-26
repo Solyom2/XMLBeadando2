@@ -1,6 +1,8 @@
 package hu.iit.me.service;
 
+import com.sun.javafx.collections.ElementObservableListDecorator;
 import hu.iit.me.model.Khajo;
+import hu.iit.me.model.Orszag;
 import hu.iit.me.model.Szovegyseg;
 import hu.iit.me.model.Uboat;
 import hu.iit.me.model.Uboat.Utipus;
@@ -8,6 +10,7 @@ import org.w3c.dom.*;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.stream.events.EndElement;
 import javax.xml.transform.Transformer;
 import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
@@ -19,7 +22,6 @@ import java.util.Date;
 
 public class XMLManager {
 
-    private static ArrayList<Khajo> khajok = new ArrayList<>();
     private static ArrayList<Uboat> uboatok = new ArrayList<>();
 
     private static SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
@@ -45,12 +47,14 @@ public class XMLManager {
         return dom;
     }
 
-    public static void addSzovegyseg() {
+    public static void addElements() {
         Document dom = createDOM();
+
         Szovegyseg szovegyseg = new Szovegyseg(3, "Sunderland", "Repülőgép", 3);
+        Orszag orszag = new Orszag(3, "Ausztrália");
 
         Element szovegysegNewElem = dom.createElement("szovegyseg");
-        NodeList nodeList= dom.getElementsByTagName("szovegysegek");
+        NodeList nodeList = dom.getElementsByTagName("szovegysegek");
         Element szovegysegekOld = (Element) nodeList.item(0);
 
         szovegysegNewElem.setAttribute("oid", String.valueOf(szovegyseg.getOid()));
@@ -64,6 +68,18 @@ public class XMLManager {
         szovegysegNewElem.appendChild(htipus);
         szovegysegekOld.appendChild(szovegysegNewElem);
 
+        Element orszagNewElem = dom.createElement("orszag");
+        nodeList = dom.getElementsByTagName("orszagok");
+        Element orszagokOld = (Element) nodeList.item(0);
+
+        orszagNewElem.setAttribute("oid", String.valueOf(orszag.getOid()));
+        Element onev = dom.createElement("onev");
+        onev.appendChild(dom.createTextNode(orszag.getOnev()));
+
+        orszagNewElem.appendChild(onev);
+        orszagokOld.appendChild(orszagNewElem);
+
+
         try {
             TransformerFactory transformerFactory = TransformerFactory.newInstance();
             Transformer transformer = transformerFactory.newTransformer();
@@ -74,15 +90,37 @@ public class XMLManager {
         }catch (Exception e) {
             e.getMessage();
         }
-
     }
+
+    public static void modifyData() {
+        Document dom = createDOM();
+
+        NodeList nodeList = dom.getElementsByTagName("parancsnok");
+        Element parancsnok = (Element) nodeList.item(2);
+
+        parancsnok.getElementsByTagName("nev").item(0).setTextContent("Fritz Frauenheim");
+        parancsnok.getElementsByTagName("orjaratok").item(0).setTextContent("9");
+        parancsnok.getElementsByTagName("kituntetesek").item(0).setTextContent("4");
+        parancsnok.getElementsByTagName("tapasztalat").item(0).setTextContent("harcedzett");
+
+        try {
+            TransformerFactory transformerFactory = TransformerFactory.newInstance();
+            Transformer transformer = transformerFactory.newTransformer();
+            DOMSource source = new DOMSource(dom);
+
+            StreamResult result = new StreamResult("hajozas.xml");
+            transformer.transform(source, result);
+        }catch (Exception e) {
+            e.getMessage();
+        }
+    }
+
 
     public static void readUboat() {
         Document dom = createDOM();
         dom.getDocumentElement().normalize();
 
         NodeList nodeList = dom.getElementsByTagName("uboat");
-        System.out.println(nodeList.getLength());
         for(int i = 0; i < nodeList.getLength(); i++) {
             Node node = nodeList.item(i);
             if (node.getNodeType() == Node.ELEMENT_NODE) {
